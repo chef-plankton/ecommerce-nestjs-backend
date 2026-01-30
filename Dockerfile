@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20-alpine AS builder
+FROM node:22.14.0-alpine AS builder
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -19,7 +19,7 @@ COPY . .
 RUN pnpm run build
 
 # Production stage
-FROM node:20-alpine AS production
+FROM node:22.14.0-alpine AS production
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
