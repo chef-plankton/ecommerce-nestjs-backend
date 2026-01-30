@@ -16,6 +16,7 @@ import { CategoriesModule } from './modules/categories';
 import { ProductsModule } from './modules/products';
 import { MediaModule } from './modules/media';
 import { TagsModule } from './modules/tags';
+import { HealthModule } from './modules/health';
 import { JwtAuthGuard } from './modules/auth/guards';
 
 @Module({
@@ -56,6 +57,7 @@ import { JwtAuthGuard } from './modules/auth/guards';
     ProductsModule,
     MediaModule,
     TagsModule,
+    HealthModule,
     // OrdersModule,
     // CartModule,
     // PaymentsModule,
