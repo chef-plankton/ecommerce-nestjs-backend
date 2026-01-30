@@ -85,13 +85,13 @@ async function bootstrap() {
       .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('docs', app, document, {
+  SwaggerModule.setup(`${apiPrefix}/${apiVersion}/docs`, app, document, {
     swaggerOptions: {
       persistAuthorization: true,
     },
   });
 
-  logger.log(`Swagger documentation available at /docs`);
+  logger.log(`Swagger documentation available at /${apiPrefix}/${apiVersion}/docs`);
 
   await app.listen(port);
   logger.log(`Application is running on: http://localhost:${port}/${apiPrefix}/${apiVersion}`);
