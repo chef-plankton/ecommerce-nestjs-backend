@@ -18,10 +18,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         autoLoadEntities: true,
         synchronize: configService.get<string>('app.nodeEnv') === 'development',
         logging: configService.get<string>('app.nodeEnv') === 'development',
-        ssl:
-          configService.get<string>('app.nodeEnv') === 'production'
-            ? { rejectUnauthorized: false }
-            : false,
+        ssl: configService.get<boolean>('database.ssl')
+          ? { rejectUnauthorized: false }
+          : false,
       }),
     }),
   ],
