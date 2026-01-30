@@ -55,9 +55,8 @@ async function bootstrap() {
     }),
   );
 
-  // Swagger documentation (only in development)
-  if (nodeEnv !== 'production') {
-    const swaggerConfig = new DocumentBuilder()
+  // Swagger documentation
+  const swaggerConfig = new DocumentBuilder()
       .setTitle('E-Commerce API')
       .setDescription('Persian E-Commerce Backend API Documentation')
       .setVersion('1.0')
@@ -85,15 +84,14 @@ async function bootstrap() {
       .addTag('Shipping', 'Shipping management endpoints')
       .build();
 
-    const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('docs', app, document, {
-      swaggerOptions: {
-        persistAuthorization: true,
-      },
-    });
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('docs', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
-    logger.log(`Swagger documentation available at /docs`);
-  }
+  logger.log(`Swagger documentation available at /docs`);
 
   await app.listen(port);
   logger.log(`Application is running on: http://localhost:${port}/${apiPrefix}/${apiVersion}`);
