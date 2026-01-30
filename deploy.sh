@@ -142,6 +142,13 @@ seed() {
     print_status "Seed complete!"
 }
 
+# Init command - create tables and seed
+init() {
+    print_status "Initializing database (creating tables and seeding)..."
+    docker exec ecommerce_api node dist/database/scripts/init-db.js "$@"
+    print_status "Database initialization complete!"
+}
+
 # Update command - pull latest and redeploy
 update() {
     print_status "Updating $APP_NAME..."
@@ -168,6 +175,7 @@ help() {
     echo "  restart   - Restart all containers"
     echo "  backup    - Create database backup"
     echo "  seed      - Run database seeds (create super admin)"
+    echo "  init      - Initialize database (create tables + seed)"
     echo "  update    - Pull latest code and redeploy"
     echo "  help      - Show this help message"
 }
@@ -198,6 +206,10 @@ case "${1:-help}" in
         ;;
     seed)
         seed
+        ;;
+    init)
+        shift
+        init "$@"
         ;;
     update)
         update
